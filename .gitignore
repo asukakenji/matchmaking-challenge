@@ -1,6 +1,9 @@
 # Mac OS X resource fork files
 ._*
-__MACOSX
+__MACOSX/
 
 # Mac OS X Desktop Services Store files
 .DS_Store
+
+# Java class files
+classes/
