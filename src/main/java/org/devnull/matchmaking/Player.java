@@ -49,17 +49,17 @@ public class Player implements PlayerInterface, java.io.Serializable {
 
     @Override
     public String getName() {
-        return name;
+        return this.name;
     }
 
     @Override
     public int getWins() {
-        return wins;
+        return this.wins;
     }
 
     @Override
     public int getLosses() {
-        return losses;
+        return this.losses;
     }
 
     @Override
@@ -112,14 +112,25 @@ public class Player implements PlayerInterface, java.io.Serializable {
 
     public static final void main(final String... args) {
         // TODO: Test construction exceptions
-        assert new Player("Kenji", 321, 123).hashCode() == new Player("Kenji", 321, 123).hashCode();
-        assert new Player("Kenji", 321, 123).equals(new Player("Kenji", 321, 123));
-        assert !new Player("Kenji", 321, 123).equals(new Player("kenji", 321, 123));
-        assert !new Player("Kenji", 321, 123).equals(new Player("Kenji", 432, 123));
-        assert !new Player("Kenji", 321, 123).equals(new Player("kenji", 321, 234));
-        assert new Player("Kenji", 321, 123).toString().equals("[Player: \"name\": \"Kenji\", \"wins\": 321, \"losses\": 123]");
-        assert NAME_COMPARATOR.compare(new Player("Kenji", 321, 123), new Player("Kenji", 432, 234)) == 0;
-        assert NAME_COMPARATOR.compare(new Player("Kenji", 321, 123), new Player("kenji", 432, 234)) < 0;
-        assert NAME_COMPARATOR.compare(new Player("kenji", 321, 123), new Player("Kenji", 432, 234)) > 0;
+        final Player kenji_1a = new Player("Kenji", 321, 123);
+        final Player kenji_1b = new Player("Kenji", 321, 123);
+        final Player kenji_2 = new Player("kenji", 321, 123);
+        final Player kenji_3 = new Player("Kenji", 432, 123);
+        final Player kenji_4 = new Player("Kenji", 321, 234);
+        assert kenji_1a.hashCode() == kenji_1b.hashCode();
+        assert kenji_1a.hashCode() != kenji_2.hashCode();
+        assert kenji_1a.hashCode() != kenji_3.hashCode();
+        assert kenji_1a.hashCode() != kenji_4.hashCode();
+        assert kenji_1a.equals(kenji_1b);
+        assert !kenji_1a.equals(kenji_2);
+        assert !kenji_1a.equals(kenji_3);
+        assert !kenji_1a.equals(kenji_4);
+        assert kenji_1a.toString().equals("[Player: \"name\": \"Kenji\", \"wins\": 321, \"losses\": 123]");
+        assert NAME_COMPARATOR.compare(kenji_1a, kenji_1a) == 0;
+        assert NAME_COMPARATOR.compare(kenji_1a, kenji_1b) == 0;
+        assert NAME_COMPARATOR.compare(kenji_1a, kenji_2) < 0;
+        assert NAME_COMPARATOR.compare(kenji_2, kenji_1a) > 0;
+        assert NAME_COMPARATOR.compare(kenji_1a, kenji_3) == 0;
+        assert NAME_COMPARATOR.compare(kenji_1a, kenji_4) == 0;
     }
 }
