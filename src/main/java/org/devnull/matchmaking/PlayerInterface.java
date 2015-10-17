@@ -6,6 +6,11 @@ package org.devnull.matchmaking;
 public interface PlayerInterface {
 
     /**
+     * TODO: Write this!
+     */
+    PlayerInterface getRealPlayer();
+
+    /**
      * Returns the name of this player.
      *
      * @return the name of this player, which is a non-null String

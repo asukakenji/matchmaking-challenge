@@ -47,6 +47,12 @@ public class Player implements PlayerInterface, java.io.Serializable {
         this.losses = losses;
     }
 
+    // Interview Note: Java Feature - Covariant Return Type
+    @Override
+    public Player getRealPlayer() {
+        return this;
+    }
+
     @Override
     public String getName() {
         return this.name;
