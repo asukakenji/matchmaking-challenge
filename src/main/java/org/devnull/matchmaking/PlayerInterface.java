@@ -4,8 +4,8 @@ public interface PlayerInterface {
 
     String getName();
 
-    long getWins();
+    int getWins();
 
-    long getLosses();
+    int getLosses();
 
 }

@@ -138,7 +138,7 @@ public class SampleData {
         players.add(new Player("Patrick Mills", 751, 268));
         players.add(new Player("Ian Poole", 128, 479));
         players.add(new Player("Daniel Moss", 553, 523));
-        players.add(new Player("Ann Owen", 9223372036854775807L, 56));
+        players.add(new Player("Ann Owen", 2147483647, 56));
         players.add(new Player("Antoinette Fuller", 242, 879));
         players.add(new Player("Flora Webster", 76, 191));
         players.add(new Player("Meghan Lawson", 952, 747));
