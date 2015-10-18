@@ -1,5 +1,10 @@
+import org.devnull.matchmaking.Match;
+import org.devnull.matchmaking.Player;
 import org.devnull.matchmaking.player.BasicPlayer;
 import org.devnull.matchmaking.player.PlayerWithNameBasedEquality;
+
+import java.util.Collections;
+import java.util.Set;
 
 public final class TestMain {
 
@@ -41,9 +46,26 @@ public final class TestMain {
         assert new PlayerWithNameBasedEquality(kenji_1).toString().equals("[PlayerWithNameBasedEquality: \"name\": \"Kenji\"]");
     }
 
+    public static final void testMatch() {
+        // TODO: Test construction exceptions
+        final BasicPlayer p1 = new BasicPlayer("Kate Wells", 961, 658);
+        final BasicPlayer p2 = new BasicPlayer("Kristine Newman", 852, 179);
+        final BasicPlayer p3 = new BasicPlayer("Billie Roberts", 942, 951);
+        final BasicPlayer p4 = new BasicPlayer("Ernestine Holloway", 61, 500);
+        final BasicPlayer p5 = new BasicPlayer("Candace Reynolds", 235, 8);
+        final BasicPlayer p6 = new BasicPlayer("Susan Potter", 234, 486);
+        final Set<Player> team1 = new java.util.HashSet<>();
+        Collections.addAll(team1, p1, p2, p3);
+        final Set<Player> team2 = new java.util.HashSet<>();
+        Collections.addAll(team2, p4, p5, p6);
+        final Match match = new Match(team1, team2);
+        assert match.toString().equals("[Match: \"team1\": [\"Kate Wells\", \"Billie Roberts\", \"Kristine Newman\"], \"team2\": [\"Susan Potter\", \"Ernestine Holloway\", \"Candace Reynolds\"]]");
+    }
+
     public static final void main(final String... args) {
         testBasicPlayer();
         testPlayerWithNameBasedEquality();
+        testMatch();
     }
 
     private TestMain() {
