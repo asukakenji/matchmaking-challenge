@@ -91,18 +91,4 @@ public final class PlayerToBeMatched implements Player, Comparable<PlayerToBeMat
         return this.player.getName().compareTo(playerToBeMatched.player.getName());
     }
 
-
-    public static final void main(final String... args) {
-        // TODO: Test construction exceptions
-        final BasicPlayer kenji_1 = new BasicPlayer("Kenji", 321, 123);
-        final BasicPlayer kenji_2 = new BasicPlayer("Kenji", 432, 234);
-        final BasicPlayer kenji_3 = new BasicPlayer("kenji", 321, 123);
-        assert new PlayerToBeMatched(kenji_1).hashCode() == new PlayerToBeMatched(kenji_1).hashCode();
-        assert new PlayerToBeMatched(kenji_1).hashCode() == new PlayerToBeMatched(kenji_2).hashCode();
-        assert new PlayerToBeMatched(kenji_1).hashCode() != new PlayerToBeMatched(kenji_3).hashCode();
-        assert new PlayerToBeMatched(kenji_1).equals(new PlayerToBeMatched(kenji_1));
-        assert new PlayerToBeMatched(kenji_1).equals(new PlayerToBeMatched(kenji_2));
-        assert !new PlayerToBeMatched(kenji_1).equals(new PlayerToBeMatched(kenji_3));
-        assert new PlayerToBeMatched(kenji_1).toString().equals("[PlayerToBeMatched: \"name\": \"Kenji\"]");
-    }
 }

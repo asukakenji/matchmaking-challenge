@@ -3,7 +3,6 @@
 set -e
 
 java -cp classes TestMain
-java -cp classes org.devnull.matchmaking.player.PlayerToBeMatched
 java -cp classes org.devnull.matchmaking.Match
 serialver -classpath classes org.devnull.matchmaking.player.BasicPlayer
 serialver -classpath classes org.devnull.matchmaking.player.BasicPlayer.NameComparator
