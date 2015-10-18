@@ -1,7 +1,4 @@
-package org.devnull.matchmaking.analyzer;
-
-import org.devnull.matchmaking.Match;
-import org.devnull.matchmaking.MatchStatistics;
+package org.devnull.matchmaking;
 
 @FunctionalInterface
 public interface MatchAnalyzer {
