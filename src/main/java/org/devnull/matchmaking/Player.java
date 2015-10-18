@@ -28,7 +28,7 @@ public interface Player {
      * @return the number of battles this player has won,
      * which is a non-negative integer
      */
-    int getWins();
+    long getWins();
 
     /**
      * Returns the number of battles this player has lost.
@@ -36,7 +36,7 @@ public interface Player {
      * @return the number of battles this player has lost,
      * which is a non-negative integer
      */
-    int getLosses();
+    long getLosses();
 
     /**
      * Returns the win rate of this player.
@@ -56,15 +56,18 @@ public interface Player {
     }
 
     /**
-     * Returns the number of battles this player has fought.
+     * Returns the battle experience of this player, which is calculated as
+     * half of the number of battles this player has won (round down) plus
+     * half of the number of battles this player has lost (round down).
      *
-     * @return the number of battles this player has fought,
+     * @return the battle experience of this player,
      * which is a non-negative integer
      */
-    default long getBattlesFought() {
-        final long wins = (long) this.getWins();
-        final long losses = (long) this.getLosses();
-        return wins + losses;
+    // Interview Note: Java Feature - Default Methods
+    default long getBattleExperience() {
+        final long halfOfWins = this.getWins() / 2;
+        final long halfOfLosses = this.getLosses() / 2;
+        return halfOfWins + halfOfLosses;
     }
 
 }
