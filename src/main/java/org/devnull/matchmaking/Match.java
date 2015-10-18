@@ -11,19 +11,19 @@ public class Match implements java.io.Serializable {
     // Interview Note: Java Feature - Streams
     // Interview Note: Java Feature - Lambda Expressions
     // Interview Note: Java Feature - Method References
-    private static String stringify(final Set<PlayerInterface> team) {
+    private static String stringify(final Set<Player> team) {
         // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
         //       but let's assume there are no special characters for simplicity.
-        final Function<PlayerInterface, String> mapper = (player) ->
+        final Function<Player, String> mapper = (player) ->
             new StringBuilder().append('"').append(player.getName()).append('"').toString();
         final Iterable<String> iterable = team.stream().map(mapper)::iterator;
         return new StringBuilder().append('[').append(String.join(", ", iterable)).append(']').toString();
     }
 
-    private final Set<PlayerInterface> team1;
-    private final Set<PlayerInterface> team2;
+    private final Set<Player> team1;
+    private final Set<Player> team2;
 
-    public Match(final Set<PlayerInterface> team1, final Set<PlayerInterface> team2) {
+    public Match(final Set<Player> team1, final Set<Player> team2) {
         // The same as java.util.Objects#requireNonNull(T)
         if (team1 == null) throw new NullPointerException();
         if (team2 == null) throw new NullPointerException();
@@ -34,11 +34,11 @@ public class Match implements java.io.Serializable {
         this.team2 = team2;
     }
 
-    public Set<PlayerInterface> getTeam1() {
+    public Set<Player> getTeam1() {
         return this.team1;
     }
 
-    public Set<PlayerInterface> getTeam2() {
+    public Set<Player> getTeam2() {
         return this.team2;
     }
 
@@ -83,9 +83,9 @@ public class Match implements java.io.Serializable {
         final BasicPlayer p4 = new BasicPlayer("Ernestine Holloway", 61, 500);
         final BasicPlayer p5 = new BasicPlayer("Candace Reynolds", 235, 8);
         final BasicPlayer p6 = new BasicPlayer("Susan Potter", 234, 486);
-        final Set<PlayerInterface> team1 = new java.util.HashSet<>();
+        final Set<Player> team1 = new java.util.HashSet<>();
         java.util.Collections.addAll(team1, p1, p2, p3);
-        final Set<PlayerInterface> team2 = new java.util.HashSet<>();
+        final Set<Player> team2 = new java.util.HashSet<>();
         java.util.Collections.addAll(team2, p4, p5, p6);
         final Match match = new Match(team1, team2);
         assert match.toString().equals("[Match: \"team1\": [\"Kate Wells\", \"Billie Roberts\", \"Kristine Newman\"], \"team2\": [\"Susan Potter\", \"Ernestine Holloway\", \"Candace Reynolds\"]]");

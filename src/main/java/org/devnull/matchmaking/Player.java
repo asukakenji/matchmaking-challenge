@@ -3,17 +3,17 @@ package org.devnull.matchmaking;
 /**
  * TODO: Write this!
  */
-public interface PlayerInterface {
+public interface Player {
 
     /**
      * TODO: Write this!
      */
-    //PlayerProperties<PlayerInterface> getPlayerProperty();
+    //PlayerProperties<Player> getPlayerProperty();
 
     /**
      * TODO: Write this!
      */
-    PlayerInterface getRealPlayer();
+    Player getRealPlayer();
 
     /**
      * Returns the name of this player.
