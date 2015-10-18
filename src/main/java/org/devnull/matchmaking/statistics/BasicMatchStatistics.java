@@ -1,6 +1,7 @@
 package org.devnull.matchmaking.statistics;
 
 import org.devnull.matchmaking.Match;
+import org.devnull.matchmaking.MatchStatistics;
 
 import java.util.Set;
 

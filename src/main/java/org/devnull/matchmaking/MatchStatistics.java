@@ -1,4 +1,4 @@
-package org.devnull.matchmaking.statistics;
+package org.devnull.matchmaking;
 
 @FunctionalInterface
 public interface MatchStatistics {
