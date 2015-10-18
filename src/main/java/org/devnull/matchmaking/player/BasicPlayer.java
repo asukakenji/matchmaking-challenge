@@ -66,14 +66,60 @@ public class BasicPlayer implements Player, java.io.Serializable {
         this.losses = losses;
     }
 
+
+
+    @Override
+    public int hashCode() {
+        // The same as java.util.Objects#hash(Object...)
+        return
+            (
+                (
+                    (1 * 31) + this.name.hashCode()
+                ) * 31 + ((int)(this.wins ^ (this.wins >>> 32)))
+            ) * 31 + ((int)(this.losses ^ (this.losses >>> 32)));
+    }
+
+    // See: http://stackoverflow.com/q/13162188/142239
+    protected final boolean equalsBasicPlayer(final BasicPlayer player) {
+        return this.name.equals(player.name)
+            && this.wins == player.wins
+            && this.losses == player.losses;
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        // Note: Do NOT use "instanceof" here
+        // Java equality sucks, let's use Scala!
+        // See: http://stackoverflow.com/q/12239344/142239
+        if (obj.getClass() != BasicPlayer.class) return false;
+        return this.equalsBasicPlayer((BasicPlayer) obj);
+    }
+
+    @Override
+    public String toString() {
+        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
+        //       but let's assume there are no special characters for simplicity.
+        return new StringBuilder("[BasicPlayer: \"name\": \"")
+            .append(this.name)
+            .append("\", \"wins\": ")
+            .append(this.wins)
+            .append(", \"losses\": ")
+            .append(this.losses)
+            .append("]")
+            .toString();
+    }
+
+
+
     //@Override
     //public PlayerProperties<Player> getPlayerProperty() {
     //    return null;
     //}
 
-    // Interview Note: Java Feature - Covariant Return Type
     @Override
-    public BasicPlayer getRealPlayer() {
+    public Player getRealPlayer() {
         return this;
     }
 
@@ -90,45 +136,6 @@ public class BasicPlayer implements Player, java.io.Serializable {
     @Override
     public long getLosses() {
         return this.losses;
-    }
-
-    @Override
-    public int hashCode() {
-        // The same as java.util.Objects#hash(Object...)
-        return
-            (
-                (
-                    (1 * 31) + this.name.hashCode()
-                ) * 31 + ((int)(this.wins ^ (this.wins >>> 32)))
-            ) * 31 + ((int)(this.losses ^ (this.losses >>> 32)));
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        // Note: Do NOT use "instanceof" here
-        // Java equality sucks, let's use Scala!
-        // See: http://stackoverflow.com/q/12239344/142239
-        if (obj.getClass() != BasicPlayer.class) return false;
-        final BasicPlayer p = (BasicPlayer) obj;
-        return this.name.equals(p.name)
-            && this.wins == p.wins
-            && this.losses == p.losses;
-    }
-
-    @Override
-    public String toString() {
-        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
-        //       but let's assume there are no special characters for simplicity.
-        return new StringBuilder("[BasicPlayer: \"name\": \"")
-            .append(this.name)
-            .append("\", \"wins\": ")
-            .append(this.wins)
-            .append(", \"losses\": ")
-            .append(this.losses)
-            .append("]")
-            .toString();
     }
 
 }

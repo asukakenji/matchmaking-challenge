@@ -9,8 +9,8 @@ import org.devnull.matchmaking.Player;
  * Representation of a player with equipments.
  * </p>
  * <p>
- * This class demonstrates a situation that the {@link BasicPlayer} needs to be
- * extended for various reasons. Fields could have been added to the
+ * This class demonstrates situations where the {@link BasicPlayer} class needs
+ * to be subclassed for various reasons. Fields could have been added to the
  * {@code BasicPlayer} class directly, but this could have a great chain effect
  * when the project grows large.
  * </p>
@@ -35,19 +35,18 @@ public class EquippedPlayer extends BasicPlayer implements java.io.Serializable 
         this.equipmentLevel = equipmentLevel;
     }
 
-    //@Override
-    //public PlayerProperties<PlayerInterface> getPlayerProperty() {
-    //    return null;
-    //}
 
-    public int getEquipmentLevel() {
-        return this.equipmentLevel;
-    }
 
     @Override
     public int hashCode() {
         // The same as java.util.Objects#hash(Object...)
         return super.hashCode() * 31 + this.equipmentLevel;
+    }
+
+    // See: http://stackoverflow.com/q/13162188/142239
+    protected final boolean equalsEquippedPlayer(final EquippedPlayer player) {
+        return this.equalsBasicPlayer(player)
+            && this.equipmentLevel == player.equipmentLevel;
     }
 
     @Override
@@ -58,27 +57,30 @@ public class EquippedPlayer extends BasicPlayer implements java.io.Serializable 
         // Java equality sucks, let's use Scala!
         // See: http://stackoverflow.com/q/12239344/142239
         if (obj.getClass() != EquippedPlayer.class) return false;
-        final EquippedPlayer p = (EquippedPlayer) obj;
-        return this.getName().equals(p.getName())
-            && this.getWins() == p.getWins()
-            && this.getLosses() == p.getLosses()
-            && this.equipmentLevel == p.equipmentLevel;
+        return this.equalsEquippedPlayer((EquippedPlayer) obj);
     }
 
     @Override
     public String toString() {
         // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
         //       but let's assume there are no special characters for simplicity.
-        return new StringBuilder("[EquippedPlayer: \"name\": \"")
-            .append(this.getName())
-            .append("\", \"wins\": ")
-            .append(this.getWins())
-            .append(", \"losses\": ")
-            .append(this.getLosses())
+        return new StringBuilder("[EquippedPlayer: ")
+            .append(super.toString())
             .append(", \"equipmentLevel\": ")
             .append(this.equipmentLevel)
             .append("]")
             .toString();
+    }
+
+
+
+    //@Override
+    //public PlayerProperties<PlayerInterface> getPlayerProperty() {
+    //    return null;
+    //}
+
+    public int getEquipmentLevel() {
+        return this.equipmentLevel;
     }
 
 }

@@ -56,8 +56,47 @@ public class PlayerFromDatabase implements Player, java.io.Serializable {
     private transient Player player;
 
     public PlayerFromDatabase(final String name) {
+        // The same as java.util.Objects#requireNonNull(T)
+        if (name == null) throw new NullPointerException();
         this.name = name;
     }
+
+
+
+    @Override
+    public int hashCode() {
+        // The same as java.util.Objects#hash(Object...)
+        return (1 * 31) + this.name.hashCode();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        // Note: Do NOT use "instanceof" here
+        // Java equality sucks, let's use Scala!
+        // See: http://stackoverflow.com/q/12239344/142239
+        if (obj.getClass() != PlayerFromDatabase.class) return false;
+        final PlayerFromDatabase p = (PlayerFromDatabase) obj;
+        return this.name.equals(p.name);
+    }
+
+    @Override
+    public String toString() {
+        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
+        //       but let's assume there are no special characters for simplicity.
+        return (this.isLoaded)
+            ? new StringBuilder("[PlayerFromDatabase: ")
+                .append(this.player.toString())
+                .append("]")
+                .toString()
+            : new StringBuilder("[PlayerFromDatabase: \"name\": \"")
+                .append(this.name)
+                .append("]")
+                .toString();
+    }
+
+
 
     //@Override
     //public PlayerProperties<Player> getPlayerProperty() {
@@ -97,32 +136,5 @@ public class PlayerFromDatabase implements Player, java.io.Serializable {
 
 
 
-    @Override
-    public int hashCode() {
-        // The same as java.util.Objects#hash(Object...)
-        return (1 * 31) + this.name.hashCode();
-    }
-
-    @Override
-    public boolean equals(final Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        // Note: Do NOT use "instanceof" here
-        // Java equality sucks, let's use Scala!
-        // See: http://stackoverflow.com/q/12239344/142239
-        if (obj.getClass() != PlayerFromDatabase.class) return false;
-        final PlayerFromDatabase p = (PlayerFromDatabase) obj;
-        return this.name.equals(p.name);
-    }
-
-    @Override
-    public String toString() {
-        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
-        //       but let's assume there are no special characters for simplicity.
-        return new StringBuilder("[PlayerFromDatabase: \"name\": \"")
-            .append(this.name)
-            .append("]")
-            .toString();
-    }
 
 }
