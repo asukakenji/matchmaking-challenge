@@ -1,6 +1,6 @@
 package org.devnull.matchmaking;
 
-public interface Matchmaker {
+public interface MatchMaker {
 
     /**
      * <p>
