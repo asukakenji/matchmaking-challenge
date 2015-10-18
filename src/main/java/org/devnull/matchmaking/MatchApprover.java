@@ -1,8 +1,11 @@
 package org.devnull.matchmaking;
 
+/**
+ * TODO: Write this!
+ */
 @FunctionalInterface
 public interface MatchApprover {
 
-    boolean isAcceptable(MatchStatistics statistics);
+    boolean isAcceptable(Match match);
 
 }
