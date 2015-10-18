@@ -134,7 +134,4 @@ public class PlayerFromDatabase implements Player, java.io.Serializable {
         return this.player;
     }
 
-
-
-
 }
