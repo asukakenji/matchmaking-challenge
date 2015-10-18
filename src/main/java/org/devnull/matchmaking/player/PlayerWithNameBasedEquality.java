@@ -3,20 +3,38 @@ package org.devnull.matchmaking.player;
 import org.devnull.matchmaking.Player;
 
 /**
- * TODO: Add main description here!
- * TODO: Decorator
- *
- * The "name" field of Player is assumed to be its unique identifier. In
- * MatchmakerImpl#enterMatchmaking(Player), a Player should be wrapped in a
- * PlayerToBeMatch before being store in a Set. If Set#add(Object) returns false,
- * then the incident should be logged because there is a high chance that either
- * the player uses an unofficial game client (e.g. a bot), or there is a bug in
- * the official game client.
- *
- * Using BasicPlayer#NAME_COMPARATOR is not an alternative. The Java Collections
- * Framework states that "the ordering imposed by a comparator should be
- * consistent with equals", otherwise "the sorted set (or sorted map) will
- * behave 'strangely'".
+ * <p>
+ * {@code PlayerWithNameBasedEquality} is a decorator for
+ * {@link org.devnull.matchmaking.Player} objects.
+ * </p>
+ * <p>
+ * Sometimes, we want to store {@code Player} objects into a
+ * {@link java.util.Set}, and check duplicates only by the "name" field (assumed
+ * to be the unique identifier of {@code Player}).
+ * </p>
+ * <p>
+ * Changing the {@code equals()} method of a concrete {@code Player}
+ * implementation, like {@link org.devnull.matchmaking.player.BasicPlayer}, to
+ * suit this single situation is not a solution - it breaks every other usage!
+ * </p>
+ * <p>
+ * Using a comparator, like
+ * {@link org.devnull.matchmaking.player.BasicPlayer#NAME_COMPARATOR} to
+ * customize the behavior of {@link java.util.TreeSet} is not a solution, too.
+ * Since the Java Collections Framework states that "the ordering imposed by a
+ * comparator should be consistent with equals", otherwise "the sorted set (or
+ * sorted map) will behave 'strangely'". So, unlike C++ comparators, Java
+ * comparators not involving all fields are for sorting only, but not for sorted
+ * collection customization. For comparators used for that purpose, "you may
+ * change the order, but equals remains equals". In order to fulfill this
+ * requirement, the comparator must compare the next field if the current field
+ * returns a tie, until all fields involved in determining {@code equals()} are
+ * compared.
+ * </p>
+ * <p>
+ * Using this decorator to "wrap" the {@code Player}s before adding to the
+ * {@code Set} solves the problem.
+ * </p>
  */
 public final class PlayerWithNameBasedEquality implements Player, Comparable<PlayerWithNameBasedEquality>, java.io.Serializable {
 
