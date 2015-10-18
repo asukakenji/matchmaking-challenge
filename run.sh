@@ -1,7 +1,14 @@
 #!/bin/bash
 
-java -cp classes org.devnull.matchmaking.Player
-java -cp classes org.devnull.matchmaking.PlayerToBeMatched
-serialver -classpath classes org.devnull.matchmaking.Player
-serialver -classpath classes org.devnull.matchmaking.Player.NameComparator
-serialver -classpath classes org.devnull.matchmaking.PlayerToBeMatched
+set -e
+
+java -cp classes TestMain
+java -cp classes org.devnull.matchmaking.player.PlayerToBeMatched
+java -cp classes org.devnull.matchmaking.Match
+serialver -classpath classes org.devnull.matchmaking.player.BasicPlayer
+serialver -classpath classes org.devnull.matchmaking.player.BasicPlayer.NameComparator
+serialver -classpath classes org.devnull.matchmaking.player.PlayerToBeMatched
+serialver -classpath classes org.devnull.matchmaking.player.EquippedPlayer
+serialver -classpath classes org.devnull.matchmaking.player.RemotePlayer
+serialver -classpath classes org.devnull.matchmaking.Match
+serialver -classpath classes org.devnull.matchmaking.statistics.BasicMatchStatistics
