@@ -1,4 +1,5 @@
 import org.devnull.matchmaking.player.BasicPlayer;
+import org.devnull.matchmaking.player.PlayerWithNameBasedEquality;
 
 public final class TestMain {
 
@@ -26,8 +27,23 @@ public final class TestMain {
         assert BasicPlayer.NAME_COMPARATOR.compare(kenji_1a, kenji_4) == 0;
     }
 
+    public static final void testPlayerWithNameBasedEquality() {
+        // TODO: Test construction exceptions
+        final BasicPlayer kenji_1 = new BasicPlayer("Kenji", 321, 123);
+        final BasicPlayer kenji_2 = new BasicPlayer("Kenji", 432, 234);
+        final BasicPlayer kenji_3 = new BasicPlayer("kenji", 321, 123);
+        assert new PlayerWithNameBasedEquality(kenji_1).hashCode() == new PlayerWithNameBasedEquality(kenji_1).hashCode();
+        assert new PlayerWithNameBasedEquality(kenji_1).hashCode() == new PlayerWithNameBasedEquality(kenji_2).hashCode();
+        assert new PlayerWithNameBasedEquality(kenji_1).hashCode() != new PlayerWithNameBasedEquality(kenji_3).hashCode();
+        assert new PlayerWithNameBasedEquality(kenji_1).equals(new PlayerWithNameBasedEquality(kenji_1));
+        assert new PlayerWithNameBasedEquality(kenji_1).equals(new PlayerWithNameBasedEquality(kenji_2));
+        assert !new PlayerWithNameBasedEquality(kenji_1).equals(new PlayerWithNameBasedEquality(kenji_3));
+        assert new PlayerWithNameBasedEquality(kenji_1).toString().equals("[PlayerWithNameBasedEquality: \"name\": \"Kenji\"]");
+    }
+
     public static final void main(final String... args) {
         testBasicPlayer();
+        testPlayerWithNameBasedEquality();
     }
 
     private TestMain() {
