@@ -33,6 +33,45 @@ public final class PlayerToBeMatched implements Player, Comparable<PlayerToBeMat
         this.player = player;
     }
 
+
+
+    @Override
+    public final int hashCode() {
+        // The same as java.util.Objects#hash(Object...)
+        return (1 * 31) + this.player.getName().hashCode();
+    }
+
+    @Override
+    public final boolean equals(final Object obj) {
+        if (obj == null) return false;
+        if (obj == this) return true;
+        // Note: Do NOT use "instanceof" here
+        // Java equality sucks, let's use Scala!
+        // See: http://stackoverflow.com/q/12239344/142239
+        if (obj.getClass() != PlayerToBeMatched.class) return false;
+        final PlayerToBeMatched p = (PlayerToBeMatched) obj;
+        return this.player.getName().equals(p.player.getName());
+    }
+
+    @Override
+    public final String toString() {
+        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
+        //       but let's assume there are no special characters for simplicity.
+        return new StringBuilder("[PlayerToBeMatched: ")
+            .append(this.player.toString())
+            .append("]")
+            .toString();
+    }
+
+
+
+    @Override
+    public final int compareTo(final PlayerToBeMatched playerToBeMatched) {
+        return this.player.getName().compareTo(playerToBeMatched.player.getName());
+    }
+
+
+
     //@Override
     //public PlayerProperties<Player> getPlayerProperty() {
     //    return null;
@@ -56,39 +95,6 @@ public final class PlayerToBeMatched implements Player, Comparable<PlayerToBeMat
     @Override
     public final long getLosses() {
         return this.player.getLosses();
-    }
-
-    @Override
-    public final int hashCode() {
-        // The same as java.util.Objects#hash(Object...)
-        return (1 * 31) + this.player.getName().hashCode();
-    }
-
-    @Override
-    public final boolean equals(final Object obj) {
-        if (obj == null) return false;
-        if (obj == this) return true;
-        // Note: Do NOT use "instanceof" here
-        // Java equality sucks, let's use Scala!
-        // See: http://stackoverflow.com/q/12239344/142239
-        if (obj.getClass() != PlayerToBeMatched.class) return false;
-        final PlayerToBeMatched ptbm = (PlayerToBeMatched) obj;
-        return this.player.getName().equals(ptbm.player.getName());
-    }
-
-    @Override
-    public final String toString() {
-        // TODO: Should use Apache Commons StringEscapeUtils to escape this.name here,
-        //       but let's assume there are no special characters for simplicity.
-        return new StringBuilder("[PlayerToBeMatched: \"name\": \"")
-            .append(this.player.getName())
-            .append("\"]")
-            .toString();
-    }
-
-    @Override
-    public final int compareTo(final PlayerToBeMatched playerToBeMatched) {
-        return this.player.getName().compareTo(playerToBeMatched.player.getName());
     }
 
 }
