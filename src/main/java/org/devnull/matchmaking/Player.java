@@ -1,7 +1,30 @@
 package org.devnull.matchmaking;
 
 /**
- * TODO: Write this!
+ * <p>
+ * {@code Player} is the interface a player. It exists to support various
+ * design patterns. Since eliminating concrete classes in all method signatures
+ * is an important goal of the design of the package, this interface is a
+ * essential abstraction of a player.
+ * </p>
+ * <p>
+ * Since Java SE 8, "default methods" are allowed in interfaces. For example,
+ * the implementation of {@link #getWinRate()} only depends on methods in the
+ * interface, and therefore could be written in the interface.
+ * </p>
+ * <p>
+ * Before Java SE 8, {@code #getWinRate()} should be written in an abstract
+ * class / base class, like {@link BasicPlayer}. However, not all classes
+ * implementing the interface derive from the same abstract class / base class
+ * - {@link org.devnull.matchmaking.player.PlayerFromDatabase} is a good
+ * example.
+ * </p>
+ * <p>Most probably, methods like {@code #getWinRate()} are copied-and-pasted
+ * from one file to another. Therefore, when a change or an improvement to the
+ * implementation is to be made, it is hard to find and update all copies. Bugs
+ * may thus produced. Writing the implementation in the interface eliminates
+ * this problem.
+ * </p>
  */
 public interface Player {
 
