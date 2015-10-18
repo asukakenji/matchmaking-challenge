@@ -8,6 +8,11 @@ public interface PlayerInterface {
     /**
      * TODO: Write this!
      */
+    //PlayerProperties<PlayerInterface> getPlayerProperty();
+
+    /**
+     * TODO: Write this!
+     */
     PlayerInterface getRealPlayer();
 
     /**
