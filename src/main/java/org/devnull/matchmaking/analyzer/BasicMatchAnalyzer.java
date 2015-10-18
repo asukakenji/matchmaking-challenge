@@ -8,6 +8,9 @@ import org.devnull.matchmaking.statistics.BasicMatchStatistics;
 
 import java.util.Set;
 
+/**
+ * TODO: Write this!
+ */
 public final class BasicMatchAnalyzer implements MatchAnalyzer {
 
     public final MatchStatistics analyze(final Match match) {
@@ -20,17 +23,15 @@ public final class BasicMatchAnalyzer implements MatchAnalyzer {
         double winRateTeam2Max = Double.MIN_VALUE;
         double winRateMatchMin = Double.MAX_VALUE;
         double winRateMatchMax = Double.MIN_VALUE;
-        long battlesFoughtTeam1Min = Long.MAX_VALUE;
-        long battlesFoughtTeam1Max = Long.MIN_VALUE;
-        long battlesFoughtTeam2Min = Long.MAX_VALUE;
-        long battlesFoughtTeam2Max = Long.MIN_VALUE;
-        long battlesFoughtMatchMin = Long.MAX_VALUE;
-        long battlesFoughtMatchMax = Long.MIN_VALUE;
+        long battleExperienceTeam1Min = Long.MAX_VALUE;
+        long battleExperienceTeam1Max = Long.MIN_VALUE;
+        long battleExperienceTeam2Min = Long.MAX_VALUE;
+        long battleExperienceTeam2Max = Long.MIN_VALUE;
+        long battleExperienceMatchMin = Long.MAX_VALUE;
+        long battleExperienceMatchMax = Long.MIN_VALUE;
 
         for (final Player player : team1) {
-            //final PlayerToBeMatched player = (PlayerToBeMatched) p;
-
-            double winRate = player.getWinRate();
+            final double winRate = player.getWinRate();
             if (winRate < winRateTeam1Min) {
                 winRateTeam1Min = winRate;
             }
@@ -44,25 +45,23 @@ public final class BasicMatchAnalyzer implements MatchAnalyzer {
                 winRateMatchMax = winRate;
             }
 
-            long battlesFought = player.getBattlesFought();
-            if (battlesFought < battlesFoughtTeam1Min) {
-                battlesFoughtTeam1Min = battlesFought;
+            final long battleExperience = player.getBattleExperience();
+            if (battleExperience < battleExperienceTeam1Min) {
+                battleExperienceTeam1Min = battleExperience;
             }
-            if (battlesFought > battlesFoughtTeam1Max) {
-                battlesFoughtTeam1Max = battlesFought;
+            if (battleExperience > battleExperienceTeam1Max) {
+                battleExperienceTeam1Max = battleExperience;
             }
-            if (battlesFought < battlesFoughtMatchMin) {
-                battlesFoughtMatchMin = battlesFought;
+            if (battleExperience < battleExperienceMatchMin) {
+                battleExperienceMatchMin = battleExperience;
             }
-            if (battlesFought > battlesFoughtMatchMax) {
-                battlesFoughtMatchMax = battlesFought;
+            if (battleExperience > battleExperienceMatchMax) {
+                battleExperienceMatchMax = battleExperience;
             }
         }
 
         for (final Player player : team2) {
-            //final PlayerToBeMatched player = (PlayerToBeMatched) p;
-
-            double winRate = player.getWinRate();
+            final double winRate = player.getWinRate();
             if (winRate < winRateTeam2Min) {
                 winRateTeam2Min = winRate;
             }
@@ -76,33 +75,35 @@ public final class BasicMatchAnalyzer implements MatchAnalyzer {
                 winRateMatchMax = winRate;
             }
 
-            long battlesFought = player.getBattlesFought();
-            if (battlesFought < battlesFoughtTeam2Min) {
-                battlesFoughtTeam2Min = battlesFought;
+            final long battleExperience = player.getBattleExperience();
+            if (battleExperience < battleExperienceTeam2Min) {
+                battleExperienceTeam2Min = battleExperience;
             }
-            if (battlesFought > battlesFoughtTeam2Max) {
-                battlesFoughtTeam2Max = battlesFought;
+            if (battleExperience > battleExperienceTeam2Max) {
+                battleExperienceTeam2Max = battleExperience;
             }
-            if (battlesFought < battlesFoughtMatchMin) {
-                battlesFoughtMatchMin = battlesFought;
+            if (battleExperience < battleExperienceMatchMin) {
+                battleExperienceMatchMin = battleExperience;
             }
-            if (battlesFought > battlesFoughtMatchMax) {
-                battlesFoughtMatchMax = battlesFought;
+            if (battleExperience > battleExperienceMatchMax) {
+                battleExperienceMatchMax = battleExperience;
             }
         }
 
-//         this.winRateTeam1Min = winRateTeam1Min; 
-//         this.winRateTeam1Max = winRateTeam1Max; 
-//         this.winRateTeam2Min = winRateTeam2Min; 
-//         this.winRateTeam2Max = winRateTeam2Max; 
-//         this.winRateMatchMin = winRateMatchMin; 
-//         this.winRateMatchMax = winRateMatchMax; 
-//         this.battlesFoughtTeam1Min = battlesFoughtTeam1Min; 
-//         this.battlesFoughtTeam1Max = battlesFoughtTeam1Max; 
-//         this.battlesFoughtTeam2Min = battlesFoughtTeam2Min; 
-//         this.battlesFoughtTeam2Max = battlesFoughtTeam2Max; 
-//         this.battlesFoughtMatchMin = battlesFoughtMatchMin; 
-//         this.battlesFoughtMatchMax = battlesFoughtMatchMax; 
-         return null;
+        return new BasicMatchStatistics(
+            match,
+            winRateTeam1Min,
+            winRateTeam1Max,
+            winRateTeam2Min,
+            winRateTeam2Max,
+            winRateMatchMin,
+            winRateMatchMax,
+            battleExperienceTeam1Min,
+            battleExperienceTeam1Max,
+            battleExperienceTeam2Min,
+            battleExperienceTeam2Max,
+            battleExperienceMatchMin,
+            battleExperienceMatchMax
+        );
     }
 }
