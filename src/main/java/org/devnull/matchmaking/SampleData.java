@@ -1,5 +1,6 @@
 package org.devnull.matchmaking;
 
+import org.devnull.matchmaking.Player;
 import org.devnull.matchmaking.player.BasicPlayer;
 
 import java.util.ArrayList;
@@ -7,8 +8,8 @@ import java.util.List;
 
 public class SampleData {
 
-    public static List<BasicPlayer> getPlayers() {
-        final List<BasicPlayer> players = new ArrayList<BasicPlayer>(250);
+    public static List<Player> getPlayers() {
+        final List<Player> players = new ArrayList<Player>(250);
 
         players.add(new BasicPlayer("Kate Wells", 961, 658));
         players.add(new BasicPlayer("Kristine Newman", 852, 179));
