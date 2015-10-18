@@ -1,5 +1,8 @@
 package org.devnull.matchmaking;
 
+// TODO: Remove this after main() is removed.
+import org.devnull.matchmaking.player.BasicPlayer;
+
 import java.util.Set;
 import java.util.function.Function;
 

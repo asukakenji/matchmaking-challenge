@@ -1,6 +1,8 @@
-package org.devnull.matchmaking;
+package org.devnull.matchmaking.player;
 
 //import static org.devnull.matchmaking.CommonMacros.*;
+
+import org.devnull.matchmaking.Player;
 
 import java.util.Comparator;
 

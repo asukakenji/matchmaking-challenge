@@ -1,4 +1,6 @@
-package org.devnull.matchmaking;
+package org.devnull.matchmaking.player;
+
+import org.devnull.matchmaking.Player;
 
 /**
  * TODO: Add main description here!

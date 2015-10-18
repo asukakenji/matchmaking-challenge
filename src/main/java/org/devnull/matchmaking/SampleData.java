@@ -1,5 +1,7 @@
 package org.devnull.matchmaking;
 
+import org.devnull.matchmaking.player.BasicPlayer;
+
 import java.util.ArrayList;
 import java.util.List;
 
