@@ -6,4 +6,5 @@ __MACOSX/
 .DS_Store
 
 # Java class files
-classes/
+/classes/
+/target/
