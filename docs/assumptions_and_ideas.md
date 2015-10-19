@@ -5,7 +5,7 @@
 It sounds reasonable to make such an assumption.
 Since if there are more than 16 players battling in an arena,
 it soon becomes a battle royal / tangled warfare.
-Players with higher attack points may probably win easily by making aimless attacks continuously.
+Players with higher attack points may probably win easily by making aimless attacks throughout the battle.
 
 
 
@@ -50,7 +50,8 @@ That should be long enough for the life-time of a game!
 
 ### Calculations involving `Player.wins` and `Player.losses` should be handled with care
 
-Since `Player.wins` and `Player.losses` are built-in integers, they should be handled with care or overflow may occur and strange behaviors will probably follow.
+Since `Player.wins` and `Player.losses` are built-in integers,
+they should be handled with care or overflow may occur and strange behaviors will probably follow.
 
 For example, calculating the win rate directly from the definition may cause overflow:
 
