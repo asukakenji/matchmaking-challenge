@@ -55,7 +55,7 @@ public class SampleData {
         players.add(new BasicPlayer("Mathew Park", 650, 310));
         players.add(new BasicPlayer("Pat Allen", 347, 365));
         players.add(new BasicPlayer("Luke Perkins", 460, 972));
-        players.add(new BasicPlayer("Kurt Obrien", 733, -760));
+        //players.add(new BasicPlayer("Kurt Obrien", 733, -760));
         players.add(new BasicPlayer("Pedro Stokes", 264, 360));
         players.add(new BasicPlayer("Sophia Butler", 976, 376));
         players.add(new BasicPlayer("Elaine Gregory", 630, 994));
@@ -86,7 +86,7 @@ public class SampleData {
         players.add(new BasicPlayer("Robin Richardson", 546, 149));
         players.add(new BasicPlayer("Fernando Warren", 169, 57));
         players.add(new BasicPlayer("Carl Snyder", 336, 554));
-        players.add(new BasicPlayer("Ramon Huff", -99, 639));
+        //players.add(new BasicPlayer("Ramon Huff", -99, 639));
         players.add(new BasicPlayer("Felipe Silva", 245, 685));
         players.add(new BasicPlayer("Della Rose", 864, 192));
         players.add(new BasicPlayer("Jake Baker", 573, 379));
