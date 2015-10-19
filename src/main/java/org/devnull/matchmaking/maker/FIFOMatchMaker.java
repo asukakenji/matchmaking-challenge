@@ -1,7 +1,11 @@
-package org.devnull.matchmaking;
+package org.devnull.matchmaking.maker;
 
-import org.devnull.matchmaking.player.PlayerWithNameBasedEquality;
+import org.devnull.matchmaking.Match;
+import org.devnull.matchmaking.MatchApprover;
+import org.devnull.matchmaking.MatchMaker;
+import org.devnull.matchmaking.Player;
 import org.devnull.matchmaking.approver.AlwaysTrueMatchApprover;
+import org.devnull.matchmaking.player.PlayerWithNameBasedEquality;
 
 import java.util.HashSet;
 import java.util.Iterator;
