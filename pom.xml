@@ -5,13 +5,15 @@
   <groupId>org.devnull</groupId>
   <artifactId>matchmaking</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <!-- packaging>jar</packaging -->
+  <packaging>jar</packaging>
 
-  <!-- name>matchmaking</name -->
-  <!-- url>http://maven.apache.org</url -->
+  <name>Match-Making Challenge</name>
+  <url>https://github.com/asukakenji/matchmaking-challenge</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -29,9 +31,13 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.3</version>
         <configuration>
-          <source>8</source>
-          <target>8</target>
-          <!-- fork>true</fork -->
+          <!-- Values specified in configuration override the values in properties -->
+          <!-- source>8</source -->
+          <!-- target>8</target -->
+          <compilerArgs>
+            <arg>-Xlint:unchecked</arg>
+            <arg>-Xdiags:verbose</arg>
+          </compilerArgs>
         </configuration>
       </plugin>
     </plugins>
